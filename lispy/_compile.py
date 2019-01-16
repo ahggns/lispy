@@ -19,9 +19,9 @@ def compile_bytecode(exp):
     if isinstance(exp, str) and exp[0] == '"' and exp[-1] == '"':
         return [LOAD_CONST(exp[1:-1])]
     if isinstance(exp, list):
-        assert exp  # assert non-empty
+        assert exp, 'expression list cannot be empty'  # assert non-empty
         if exp[0] == 'val':
-            assert len(exp) == 3
+            assert len(exp) == 3, "'val' requires exactly two arguments"
             _, name, subexp = exp
             return compile_bytecode(subexp) + [STORE_NAME(name)]
         if exp[0] == 'if':
@@ -37,7 +37,7 @@ def compile_bytecode(exp):
             )
         if exp[0] == 'lambda':
             _, params, body = exp
-            assert isinstance(body, list)
+            assert isinstance(body, list), "body of lambda expression must be a list"
             if len(body) == 1:
                 body = body[0]
             nparams = len(params)

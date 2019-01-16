@@ -24,7 +24,7 @@ def evaluate(code, env=None):
             nargs = ins.arg
             args = [stack.pop(-1) for _ in range(nargs)][::-1]
             func = stack.pop(-1)
-            assert callable(func)
+            assert callable(func), "'{}' is not callable".format(func)
             stack.append(func(*args))
         elif opcode == Opcode.RELATIVE_JUMP:
             off = ins.arg

@@ -75,5 +75,6 @@ class Builtins(Env):
             '/': lambda *args: args[0] / args[1],
             'eq': lambda *args: args[0] == args[1],
             'cons': lambda *args: list(args),
-            'map': lambda f, *args: [f(*e) for e in zip(*args)]
+            'map': lambda f, *args: [f(*e) for e in zip(*args)],
+            'quit': lambda: quit(),
         })

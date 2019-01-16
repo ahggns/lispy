@@ -16,7 +16,7 @@ def parse(tokens):
             if token == ')':
                 if paren:
                     return parsed, tokens
-                raise ValueError('mismatched parenthesis')
+                raise ParseError('mismatched parenthesis')
             elif token == '(':
                 sub, tokens = _parse(tokens, True)
                 parsed.append(sub)
@@ -27,9 +27,13 @@ def parse(tokens):
             else:
                 parsed.append(token)
         if paren:
-            raise ValueError('mismatched parenthesis')
+            raise ParseError('mismatched parenthesis')
         if len(parsed) == 1:
             parsed = parsed[0]
         return parsed, tokens
     parsed, _ = _parse(tokens, False)
     return parsed
+
+
+class ParseError(Exception):
+    pass
