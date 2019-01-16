@@ -3,7 +3,7 @@
 import pytest
 
 from lispy import compile_bytecode
-from lispy._instruction import LOAD_CONST, STORE_NAME, LOAD_NAME, \
+from lispy.core._instruction import LOAD_CONST, STORE_NAME, LOAD_NAME, \
     MAKE_FUNCTION, CALL_FUNCTION
 
 @pytest.mark.parametrize(('tokens', 'expected'), [

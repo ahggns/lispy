@@ -2,18 +2,18 @@
 
 import re
 
-from .._instruction import LOAD_CONST, LOAD_NAME, STORE_NAME, MAKE_FUNCTION, \
+from ..core._instruction import LOAD_CONST, LOAD_NAME, STORE_NAME, MAKE_FUNCTION, \
     RELATIVE_JUMP, RELATIVE_JUMP_IF_TRUE, CALL_FUNCTION
 
 INST_RE = re.compile('([A-Z_]+)[(]([^)]+)[)]')
 
-def serialize(code):
+def serialize_bytecode(code):
     # type: (List[Instruction]) -> str
     """serialize a list of instructions to a string"""
     return '\n'.join("{}({})".format(inst.opcode.name, inst.arg)
                      for inst in code)
 
-def deserialize(code):
+def deserialize_bytecode(code):
     # type: (str) -> List[Instruction]
     """deserialize a string containing serialized bytecode into a
     list of instructions.

@@ -1,11 +1,7 @@
 import sys
 
-from ._compile import compile_bytecode
-from ._eval import evaluate
-from ._parse import parse
-from ._tokenize import tokenize
-
-from ._env import Builtins
+from ..core import tokenize, parse, compile_bytecode, evaluate
+from ..core._env import Builtins
 
 class Repl():
     _env = Builtins()

@@ -2,8 +2,9 @@
 
 import pytest
 
-from lispy.io import deserialize, serialize, save, load
-from lispy._instruction import LOAD_CONST, STORE_NAME, LOAD_NAME, \
+from lispy.io import deserialize_bytecode, serialize_bytecode, \
+    save_bytecode, load_bytecode
+from lispy.core._instruction import LOAD_CONST, STORE_NAME, LOAD_NAME, \
     MAKE_FUNCTION, CALL_FUNCTION, RELATIVE_JUMP, RELATIVE_JUMP_IF_TRUE
 
 test_bytecode = [
@@ -16,11 +17,11 @@ test_bytecode = [
 @pytest.mark.parametrize('code', test_bytecode)
 def test_serde(code):
     """assert that a roundtrip through serde is a noop"""
-    assert deserialize(serialize(code)) == code
+    assert deserialize_bytecode(serialize_bytecode(code)) == code
 
 @pytest.mark.parametrize('code', test_bytecode)
-def test_file_io(code, tmp_path):
+def test_bytecode_file_io(code, tmp_path):
     """assert that a roundtrip through save/load is a noop"""
     path = tmp_path / "code.txt"
-    save(code, path)
-    assert load(path) == code
+    save_bytecode(code, path)
+    assert load_bytecode(path) == code
