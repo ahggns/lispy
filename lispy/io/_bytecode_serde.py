@@ -1,4 +1,4 @@
-"""serialize and deserialize from a newline-delimited string of instructions"""
+"""serialize and deserialize bytecode from a newline-delimited string of instructions"""
 
 import re
 

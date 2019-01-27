@@ -1,4 +1,4 @@
-"""saving and loading from files"""
+"""saving and loading bytecode from files"""
 
 from ._bytecode_serde import deserialize_bytecode, serialize_bytecode
 

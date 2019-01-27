@@ -1,8 +1,9 @@
 """tests for io"""
 
+import io
+from contextlib import redirect_stdout
 import pytest
-
-from lispy.io import deserialize_bytecode, serialize_bytecode, \
+from lispy.io import deserialize_bytecode, execute_file, serialize_bytecode, \
     save_bytecode, load_bytecode
 from lispy.core._instruction import LOAD_CONST, STORE_NAME, LOAD_NAME, \
     MAKE_FUNCTION, CALL_FUNCTION, RELATIVE_JUMP, RELATIVE_JUMP_IF_TRUE
@@ -25,3 +26,14 @@ def test_bytecode_file_io(code, tmp_path):
     path = tmp_path / "code.txt"
     save_bytecode(code, path)
     assert load_bytecode(path) == code
+
+@pytest.mark.parametrize(('file', 'expected'), [
+   ('factorial.lisp', '120\n'),
+])
+def test_code_file(file, expected):
+   """assert strings tokenize correctly"""
+   capture = io.StringIO()
+   with redirect_stdout(capture):
+      execute_file("test/resources/lispy/{}".format(file))
+   output = capture.getvalue()
+   assert output == expected
