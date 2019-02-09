@@ -2,11 +2,12 @@
 
 import re
 
-WHITESPACE = re.compile(r'\s')
-PAREN = re.compile(r'[()]')
-NUMERIC = re.compile(r'\d+([.]\d*)?')
+WHITESPACE = re.compile(r"\s")
+PAREN = re.compile(r"[()]")
+NUMERIC = re.compile(r"\d+([.]\d*)?")
 STRING = re.compile(r'"[^"]*"')
-IDENTIFIER = re.compile(r'[A-Za-z_*/\-+]+[A-Za-z0-9_]*')
+IDENTIFIER = re.compile(r"[A-Za-z_*/\-+]+[A-Za-z0-9_]*")
+
 
 def _match(string):
     for definition in (PAREN, NUMERIC, STRING, IDENTIFIER):
@@ -26,5 +27,5 @@ def tokenize(string):
         else:
             token = _match(string)
             tokens.append(token)
-            string = string[len(token):]
+            string = string[len(token) :]
     return tokens

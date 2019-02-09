@@ -2,6 +2,7 @@
 
 import enum
 
+
 class AutoNumber(enum.Enum):
     """Enumeration with automatic value numbering."""
 
@@ -14,6 +15,7 @@ class AutoNumber(enum.Enum):
 @enum.unique
 class Opcode(AutoNumber):
     """Enumeration of Opcodes to be used in Instructions."""
+
     LOAD_CONST = enum.auto()
     STORE_NAME = enum.auto()
     LOAD_NAME = enum.auto()

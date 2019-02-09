@@ -4,6 +4,7 @@ from ._env import Builtins
 from ._function import Function
 from ._opcode import Opcode
 
+
 def evaluate(code, env=None):
     # type (List[Instruction], Env) -> Optional[Any]
     """Evaluate bytecode and return value from top of stack if present."""

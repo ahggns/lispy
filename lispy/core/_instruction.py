@@ -7,7 +7,8 @@ from ._opcode import Opcode
 if TYPE_CHECKING:
     from typing import Any
 
-class Instruction():
+
+class Instruction:
     """A compiled bytecode instruction."""
 
     def __init__(self, opcode, arg=None):
@@ -22,9 +23,11 @@ class Instruction():
         return Instruction(self.opcode, arg)
 
     def __eq__(self, other):
-        return isinstance(other, Instruction) and \
-            self.opcode == other.opcode and \
-            self.arg == other.arg
+        return (
+            isinstance(other, Instruction)
+            and self.opcode == other.opcode
+            and self.arg == other.arg
+        )
 
     @property
     def opcode(self):
@@ -39,10 +42,10 @@ class Instruction():
         return self._arg
 
 
-LOAD_CONST = Instruction(Opcode.LOAD_CONST, 'const')
-LOAD_NAME = Instruction(Opcode.LOAD_NAME, 'name')
-STORE_NAME = Instruction(Opcode.STORE_NAME, 'name')
-CALL_FUNCTION = Instruction(Opcode.CALL_FUNCTION, 'nargs')
-RELATIVE_JUMP_IF_TRUE = Instruction(Opcode.RELATIVE_JUMP_IF_TRUE, 'off')
-RELATIVE_JUMP = Instruction(Opcode.RELATIVE_JUMP, 'off')
-MAKE_FUNCTION = Instruction(Opcode.MAKE_FUNCTION, 'nparam')
+LOAD_CONST = Instruction(Opcode.LOAD_CONST, "const")
+LOAD_NAME = Instruction(Opcode.LOAD_NAME, "name")
+STORE_NAME = Instruction(Opcode.STORE_NAME, "name")
+CALL_FUNCTION = Instruction(Opcode.CALL_FUNCTION, "nargs")
+RELATIVE_JUMP_IF_TRUE = Instruction(Opcode.RELATIVE_JUMP_IF_TRUE, "off")
+RELATIVE_JUMP = Instruction(Opcode.RELATIVE_JUMP, "off")
+MAKE_FUNCTION = Instruction(Opcode.MAKE_FUNCTION, "nparam")

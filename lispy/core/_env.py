@@ -6,7 +6,8 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from typing import Any, Dict
 
-class Env():
+
+class Env:
     """A bound environment with an optional parent reference
     for closure evaluation."""
 
@@ -66,23 +67,25 @@ class Builtins(Env):
     """Environment containing only interpreter builtins."""
 
     def __init__(self):
-        super(Builtins, self).__init__({
-            'true': True,
-            'false': False,
-            'null': None,
-            '+': lambda *args: sum(args),
-            '*': lambda *args: reduce(lambda a, b: a * b, args),
-            '-': lambda *args: args[0] - args[1],
-            '/': lambda *args: args[0] / args[1],
-            'eq': lambda a, b: a == b,
-            'ne': lambda a, b: a != b,
-            'lt': lambda a, b: a < b,
-            'gt': lambda a, b: a < b,
-            'cons': lambda *args: list(args),
-            'car': lambda list: list[0],
-            'cdr': lambda list: list[1:],
-            'nth': lambda n, list: list[n],
-            'map': lambda f, *args: [f(*e) for e in zip(*args)],
-            'print': print,
-            'quit': quit,
-        })
+        super(Builtins, self).__init__(
+            {
+                "true": True,
+                "false": False,
+                "null": None,
+                "+": lambda *args: sum(args),
+                "*": lambda *args: reduce(lambda a, b: a * b, args),
+                "-": lambda *args: args[0] - args[1],
+                "/": lambda *args: args[0] / args[1],
+                "eq": lambda a, b: a == b,
+                "ne": lambda a, b: a != b,
+                "lt": lambda a, b: a < b,
+                "gt": lambda a, b: a < b,
+                "cons": lambda *args: list(args),
+                "car": lambda list: list[0],
+                "cdr": lambda list: list[1:],
+                "nth": lambda n, list: list[n],
+                "map": lambda f, *args: [f(*e) for e in zip(*args)],
+                "print": print,
+                "quit": quit,
+            }
+        )

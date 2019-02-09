@@ -7,7 +7,8 @@ if TYPE_CHECKING:
     from typing import List, Tuple
     from ._instruction import Instruction
 
-class Function():
+
+class Function:
     """
     A compiled function. Can be called with arguments.
     Contains a reference to its outer scope.
@@ -21,10 +22,12 @@ class Function():
 
     def __call__(self, *args):
         from ._eval import evaluate
+
         bound_params = dict(zip(self._params, args))
         bound_env = Env(bound_params, parent=self._env)
         return evaluate(self._body, bound_env)
 
     def __repr__(self):
-        return "<Function{} => Instruction[...]({})>" \
-               .format(self._params, len(self._body))
+        return "<Function{} => Instruction[...]({})>".format(
+            self._params, len(self._body)
+        )
